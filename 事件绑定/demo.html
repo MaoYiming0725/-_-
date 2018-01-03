@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id='p' style="width:500px;height: 500px;background:red">
+
+    <div id="test" style="width:50px;height: 50px;background:chartreuse">点击</div>
+
+</div>
+
+<span id="preserve2b9f1efd3c03447e90ebbff63aeee026" class="wlWriterPreserve"><script>
+
+    var p = document.getElementById('p');
+
+    p.onclick = function(e){
+       alert(e.target.id)
+    }
+<!--给父元素的事件绑定子元素也可以绑定-->
+
+</script></span>
+</body>
+</html>
