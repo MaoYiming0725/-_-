@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript">
+  var script=document.createElement("script");
+
+  script.type="text/javascript";
+
+  script.innerHTML="setTimeout(function(){console.log(1);},10000)";
+
+  document.getElementsByTagName("head")[0].appendChild(script);
+</script>
+</head>
+<body>
+  <p>测试无阻塞脚本</p>
+</body>
+</html>

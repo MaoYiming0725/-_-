@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style type="text/css">
+    .button {
+        height: 2em;
+        border: 0;
+        border-radius: .2em;
+        background-color: #34538b;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function(){
+      document.getElementById("button").onclick = function() {
+          var oStyle = this.currentStyle? this.currentStyle : window.getComputedStyle(this, null);
+          alert(oStyle.height);
+      };
+    };
+  </script>
+</head>
+<body>
+  <input type="button" id="button" class="button" value="点击我，显示高度" />
+</body>
+</html>
