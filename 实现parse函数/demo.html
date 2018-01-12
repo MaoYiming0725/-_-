@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>parse function</title>
+</head>
+<!-- 请实现方法 parse ，作用如下：
+var object = {
+ b: { c: 4 }, d: [{ e: 5 }, { e: 6 }]
+};
+console.log( parse(object, b.c’) == 4 ) //true
+console.log( parse(object, d[0].e’) == 5 ) //true
+console.log( parse(object, d.0.e’) == 5 ) //true
+console.log( parse(object, d[1].e’) == 6 ) //true
+console.log( parse(object, d.1.e’) == 6 ) //true
+console.log( parse(object, f’) == undefined’ ) //true
+-->
+<body>
+  test
+  <script type="text/javascript">
+
+    var object = {
+     b: { c: 4 }, d: [{ e: 5 }, { e: 6 }]
+   };/*
+    console.log( parse(object, 'b.c') == 4 ) //true
+    console.log( parse(object, 'd[0].e') == 5 ) //true
+    console.log( parse(object, 'd.0.e') == 5 ) //true
+    console.log( parse(object, 'd[1].e') == 6 ) //true
+    console.log( parse(object, 'd.1.e') == 6 ) //true
+    console.log( parse(object, 'f') == 'undefined') //true
+    */
+
+    parse = function(obj, arr){
+      var result;
+      var subobj = obj;
+      var reg = /[^\]]+(?=\])/;
+      if(obj != undefined)
+        if(arr != undefined){
+          if(typeof arr == "string"){
+            if(arr.indexOf('.') != -1){
+              var ele = arr.split(".");
+            }else{
+              var ele = [arr];
+            }
+          }
+          for(var i = 0; i < ele.length; i++){
+            i1 = ele[i].indexOf('[');
+            i2 = ele[i].indexOf(']');
+            if(i1 != -1 && i2 != -1){
+              //console.log(ele[i].substring(0, i1));
+              //console.log(ele[i].substring(i1+1, i2));
+              if(subobj[ele[i].substring(0, i1)][ele[i].substring(i1+1, i2)] != undefined){
+                subobj = subobj[ele[i].substring(0, i1)][ele[i].substring(i1+1, i2)];
+                //console.log(subobj);
+              }else{
+                return 'undefined';
+              }
+              //if(regstr.test){}
+
+            }else{
+              if (subobj[ele[i]] != undefined){
+                subobj = subobj[ele[i]];
+                //console.log(subobj);
+              }else{
+                return 'undefined';
+              }
+            }
+          }
+          return subobj;
+        }
+    }
+
+    console.log( parse(object, 'b.c') == 4 ) //true
+    console.log( parse(object, 'd[0].e') == 5 ) //true
+    console.log( parse(object, 'd.0.e') == 5 ) //true
+    console.log( parse(object, 'd[1].e') == 6 ) //true
+    console.log( parse(object, 'd.1.e') == 6 ) //true
+    console.log( parse(object, 'f') == 'undefined') //true
+  </script>
+
+</body>
+</html>
