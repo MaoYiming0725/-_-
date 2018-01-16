@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>条形图</title>
+  <style type="text/css">
+    #main {
+      width: 400px;
+      height: 500px;
+      border: 1px solid #000;
+    }
+    .barblock{
+      position: relative;
+      width: 70px;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+    #main .bar{
+      position: absolute;
+      width: 50px;
+      margin-left: 20px;
+      border: 1px solid #ccc;
+      bottom: 0;
+    }
+    #a {
+      height: 30%;
+      background: #f00;
+    }
+    #b {
+      height: 80%;
+      background: #ddd;
+    }
+    #c {
+      height: 70%;
+      background: #0fd;
+    }
+    #d {
+      height: 60%;
+      background: #ff0;
+    }
+    #e {
+      height: 90%;
+      background: #234;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div class="barblock">
+    <div id="a" class="bar"></div>
+    </div>
+    <div class="barblock">
+    <div id="b" class="bar"></div>
+    </div>
+    <div class="barblock">
+    <div id="c" class="bar"></div>
+    </div>
+    <div class="barblock">
+    <div id="d" class="bar"></div>
+    </div>
+    <div class="barblock">
+    <div id="e" class="bar"></div>
+    </div>
+  </div>
+</body>
+</html>
