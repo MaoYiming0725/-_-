@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>bind function</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function printValue(){
+      console.log(this.value);
+    }
+
+    Function.prototype.myBind = function(obj) {
+      var _this = this;
+      console.log(_this);
+      console.log(typeof _this);
+      var args = Array.prototype.slice.apply(arguments, [1]);
+      return function(){
+        _this.apply(obj, args);
+      }
+    }
+
+    function TestObject(){
+      this.value = 5;
+      this.printValue = printValue.myBind(this);
+    }
+
+    var value = 10;
+    var obj1 = new TestObject();
+    printValue();
+    obj1.printValue();
+  </script>
+
+</body>
+</html>
