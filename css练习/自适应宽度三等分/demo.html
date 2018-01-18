@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <!--浮动 流式布局-->
+  <style type="text/css">
+    div{
+      height: 100%;
+    }
+    #main{
+      border: none;
+      background: #ccc;
+      width: 600px;
+      height: 500px;
+    }
+    #primary{
+      width: 67%;
+      float: left;
+    }
+    #secondary{
+      width: 33%;
+      float: right;
+      background: blue;
+    }
+    #left{
+      width: 50%;
+      float: left;
+      background: red;
+    }
+    #right{
+      width: 50%;
+      float: right;
+      background: green;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="primary">
+      <div id="left">
+      </div>
+      <div id="right">
+      </div>
+    </div>
+    <div id="secondary">
+    </div>
+  </div>
+</body>
+</html>

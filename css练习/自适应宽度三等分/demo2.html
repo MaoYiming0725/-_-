@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <!--绝对定位 流式布局-->
+  <style type="text/css">
+    div{
+      height: 100%;
+    }
+    #main{
+      position: relative;
+      border: none;
+      background: #ccc;
+      width: 600px;
+      height: 500px;
+    }
+    #left{
+      position: absolute;
+      width: 33%;
+      background: red;
+      left: 0;
+      top: 0;
+    }
+    #middle{
+      width: 33%;
+      background: blue;
+      margin: 0 auto;
+    }
+    #right{
+      position: absolute;
+      width: 33%;
+      background: green;
+      right: 0;
+      top:0;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="left">
+    </div>
+    <div id="middle">
+    </div>
+    <div id="right">
+    </div>
+  </div>
+</body>
+</html>

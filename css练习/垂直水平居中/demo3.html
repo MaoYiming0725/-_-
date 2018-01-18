@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <!--元素宽高不确定时，使用position：absolute，margin的负值可以设定为具体px-->
+  <style type="text/css">
+    #main {
+      position: relative;
+      background: #ccc;
+      width: 500px;
+      height: 500px;
+    }
+
+    #body {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: red;
+    }
+
+    #body .centering2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: #666;
+      margin-left: -50%;
+      margin-top: -50%;
+
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="body">
+      <div class="centering2">
+          <p>元素内容</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<!--
+
+固定高度div垂直水平居中
+Explanation
+
+After researching specs and documentation, this is my understanding of how Absolute Centering works:
+
+    In the normal content flow, margin: auto; equals '0' for the top and bottom.
+    W3.org: "If 'margin-top', or 'margin-bottom' are 'auto', their used value is 0."
+    position: absolute; breaks the block out of the typical content flow, rendering the rest of the content as if that block weren't there.
+    Developer.mozilla.org: "...an element that is positioned absolutely is taken out of the flow and thus takes up no space"
+    Setting top: 0; left: 0; bottom: 0; right: 0; gives the browser a new bounding box for the block. At this point the block will fill all available space in its offset parent, which is the body or position: relative; container.
+    Developer.mozilla.org: "For absolutely positioned elements, the top, right, bottom, and left properties specify offsets from the edge of the element's containing block (what the element is positioned relative to)."
+    Giving the block a width or a height prevents the block from taking up all available space and forces the browser to calculate margin: auto based on the new bounding box.
+    Developer.mozilla.org: "The margin of the [absolutely positioned] element is then positioned inside these offsets."
+    Since the block is absolutely positioned and therefore out of the normal flow, the browser gives equal values to margin-top and margin-bottom centering the element in the bounds set earlier.
+    W3.org: "If none of the three [top, bottom, height] are 'auto': If both 'margin-top' and 'margin-bottom' are 'auto', solve the equation under the extra constraint that the two margins get equal values." AKA: center the block vertically
+
+Absolute Centering appears to be the intended use for margin: auto; based on the spec and should therefore work in every standards compliant browser.
+-->
