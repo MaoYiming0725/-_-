@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>new function</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function printValue(){
+      console.log(this.value);
+    }
+
+    function TestObject(val){
+      this.value = val;
+      this.printValue = printValue.bind(this);
+    }
+
+    function _new(func){
+      var obj = new Object();
+      var args = Array.prototype.slice.apply(arguments, [1]);
+      func.apply(obj,args);
+      obj.__proto__ = {
+          constuctor: func,
+          __proto__: Object.prototype,
+      };
+      return obj;
+    }
+
+    var value = 10;
+    var obj1 = new TestObject(6);
+    var obj2 = _new(TestObject,6);
+    console.log(obj1);
+    console.log(obj2);
+  </script>
+
+</body>
+</html>
