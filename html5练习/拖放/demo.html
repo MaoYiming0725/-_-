@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <script type="text/javascript">
+    function drag(event){
+      event.dataTransfer.setData("targetID",event.target.id);
+    }
+    function allowDrag(event){
+      event.preventDefault();
+    }
+    function drop(event){
+      event.preventDefault();
+      var data =  event.dataTransfer.getData("targetID");
+      event.target.appendChild(document.getElementById(data));
+
+    }
+  </script>
+  <div style="width:500px;height:500px;border:1px solid #ccc;" id="block1" ondragover="allowDrag(event)" ondrop="drop(event)"></div>
+  <div style="width:500px;height:500px;border:1px solid #ccc;" id="block2" ondragover="allowDrag(event)" ondrop="drop(event)"></div>
+  <p id="drag1" draggable="true" ondragstart="drag(event)">this is a draggable paragraph</p>
+</body>
+</html>
