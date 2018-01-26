@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>new function</title>
+  <script type="text/javascript" src="./EventUtil.js"></script>
+</head>
+<body>
+  <div id="dragEle" class="draggable" style="width:100px;height:50px;border:1px solid #ccc;position:absolute">此元素可拖动</div>
+  <script type="text/javascript">
+  var DragDrop = function(){
+    var dragging = null;
+    var DiffX = 0;
+    var DiffY = 0;
+    function eventHandler(event){
+      var target = EventUtil.getTarget(event);
+      var event = EventUtil.getEvent(event);
+      switch (event.type) {
+        case "mousedown":
+          if(target.className.indexOf('draggable' > -1)){
+            DiffX = event.clientX - target.offsetLeft;
+            DiffY = event.clientY - target.offsetTop;
+            console.log(DiffX);
+            console.log(DiffY);
+            dragging = target;
+          }
+          break;
+        case "mousemove":
+          if(dragging != null){
+            dragging.style.left = event.clientX - DiffX + 'px';
+            dragging.style.top = event.clientY - DiffY + 'px';
+          }
+          break;
+        case "mouseup":
+          DiffX = 0;
+          DiffY = 0;
+          dragging = null;
+          break;
+      }
+    }
+
+    return {
+      enable: function(){
+        EventUtil.addHandler(document, "mousedown", eventHandler);
+        EventUtil.addHandler(document, "mousemove", eventHandler);
+        EventUtil.addHandler(document, "mouseup", eventHandler);
+      },
+      disable: function(){
+        EventUtil.removeHandler(document, "mousedown", eventHandler);
+        EventUtil.removeHandler(document, "mousemove", eventHandler);
+        EventUtil.removeHandler(document, "mouseup", eventHandler);
+      }
+    };
+  }
+
+
+
+    var eventDrag = DragDrop();
+    eventDrag.enable();
+
+  </script>
+</body>
+</html>
