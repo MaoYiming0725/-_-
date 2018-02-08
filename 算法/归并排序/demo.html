@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>归并排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function merge(array1, array2){
+      var result = [];
+      var i1 = 0;
+      var i2 = 0;
+      while(i1 < array1.length && i2 < array2.length){
+        if(array1[i1] <= array2[i2])result.push(array1[i1++]);
+        else result.push(array2[i2++]);
+      }
+      if(i1 < array1.length){
+        for(var i = i1; i < array1.length; i++)
+          result.push(array1[i]);
+      }else{
+        for(var i = i2; i < array2.length; i++)
+          result.push(array2[i]);
+      }
+      //result = i1 < array1.length ? result.concat(array1.slice(i1)) : result.concat(array2.slice(i2));
+      return result;
+    }
+
+    var a = [1,4,7,8,9,10];
+    var b = [2,5];
+    var r = merge(a, b);
+    console.log(r);
+  </script>
+
+</body>
+</html>

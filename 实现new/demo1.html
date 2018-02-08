@@ -10,12 +10,10 @@
     function printValue(){
       console.log(this.value);
     }
-
     function TestObject(val){
       this.value = val;
       this.printValue = printValue.bind(this);
     }
-
     function _new(func){
       var obj = new Object();
       var args = Array.prototype.slice.apply(arguments, [1]);
@@ -26,7 +24,6 @@
       };
       return obj;
     }
-
     var value = 10;
     var obj1 = new TestObject(6);
     var obj2 = _new(TestObject,6);

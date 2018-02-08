@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>归并排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function Maximum_subarray(array){
+      var max = [];
+      var curMax = [];
+      var maxValue = 0;
+      var curValue = 0;
+      for(var i = 0; i < array.length; i++){
+
+        if((curValue + array[i]) > array[i]){
+          //console.log(curValue + array[i], array[i]);
+
+          curValue = curValue + array[i];
+          curMax.push(array[i]);
+        }else{
+          curValue = array[i];
+          curMax = [array[i]];
+        }
+        //console.log(curMax, curValue);
+        if(curValue > maxValue){
+          //console.log(curValue, maxValue);
+          max = curMax.slice(0);
+          maxValue = curValue;
+        }
+
+      }
+      return max;
+    }
+
+    var a = [-2, 1, -3 ,4, -1, 2, 1, -5, 4];
+    var result = Maximum_subarray(a);
+  </script>
+
+</body>
+</html>
