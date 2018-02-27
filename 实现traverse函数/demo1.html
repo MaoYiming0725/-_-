@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>new function</title>
+</head>
+
+<body>
+  <div class="box" style="width:300px;height:300px">
+    <div class="box1" style="width:100px;height:100px"><div>
+    <div class="box2" style="width:10px;height:10px"><div>
+    <div class="box3" style="width:100px;height:100px"><div>
+  </div>
+  <script type="text/javascript">
+  function traverse(){
+    var ele = document.body.getElementsByTagName("*");
+    var result = [];
+    for(var i = 0; i < ele.length; i++){
+        //console.log(window.getComputedStyle(ele[i])['width']);
+        if(parseInt(window.getComputedStyle(ele[i])['width']) > 50 && parseInt(window.getComputedStyle(ele[i])['height']) > 50)result.push(ele[i]);
+    }
+    return result;
+  }
+
+  console.log(traverse());
+  </script>
+
+</body>
+</html>

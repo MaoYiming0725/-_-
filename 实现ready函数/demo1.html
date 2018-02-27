@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ready function</title>
+  <script type="text/javascript">
+    function DOMLoaded(func){
+      if(addEventListener){
+        document.addEventListener('DOMContentLoaded', function(){
+          func();
+          document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+        },false);//false表示在冒泡阶段调用事件
+      }else if(attachEvent){
+        var t = setInterval(function(){
+          if(/loaded|completed/g.test(document.readyState)){
+            func();
+            clearInterval(t);
+          }
+        },1)
+
+      }
+    }
+
+    document.ready = DOMLoaded;
+    document.ready(function(){
+      alert('ready!');
+    });
+  </script>
+</head>
+
+<body>
+  <div>
+    <p>111</p>
+    <p>111</p>
+    <p>111</p>
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518069121648&di=fcc4d946eb7e74d2b4520ab5795aae14&imgtype=0&src=http%3A%2F%2Fimg2.ph.126.net%2FF10skrmoRZyUC5nBE9KYxA%3D%3D%2F2526800865949551926.jpg" />
+  </div>
+
+</body>
+</html>

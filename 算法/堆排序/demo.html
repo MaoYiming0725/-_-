@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function siftDown(heap, low, high){
+      var i = low;
+      var j = 2*i + 1;
+      while(j <= high){
+        j = (heap[j] > heap[j+1] || (j+1) > high) ? j : (j+1);
+        if(heap[j] > heap[i]){
+          tmp = heap[i];
+          heap[i] = heap[j];
+          heap[j] = tmp;
+          i = j;
+          j = 2 * i + 1;
+        }
+      }
+      console.log(heap);
+      return heap;
+    }
+    function top_heap_sort(number){
+      var length = number.length;
+      var first_element = Math.floor((length-2)/2);
+      //console.log(first_element);
+      for(var i=0; i <= first_element; i++){
+        number = siftDown(number, first_element-i, length-1);
+      }
+      console.log(number);
+      for(var i = 0; i<= length-2; i++){
+        tmp = number[0];
+        number[0] = number[length-1-i];
+        number[length-1-i] = tmp;
+        number = siftDown(number, 0, length-2-i);
+        console.log(number);
+      }
+
+
+    };
+    var arr = [53, 17, 78, 9, 45, 65, 87, 23];
+    top_heap_sort(arr);
+
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>bind function</title>
+  <script type="text/javascript" src="./EventUtil.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function getOffsetTop(ele){
+      var top = ele.offsetTop;
+      var parent = ele.offsetParent;
+      while(parent!=null){
+        //console.log(parent);
+        //console.log(top);
+        top += parent.offsetTop;
+        parent = parent.offsetParent;
+      }
+      return top;
+
+    }
+    window.onload = function(){
+      var ele = document.getElementById('wait_load');
+      var top = getOffsetTop(ele);
+      //console.log(ele.attr['relsrc']);
+      EventUtil.addHandler(window, 'scroll', function(){
+        //console.log(document.documentElement.scrollTop);
+        if(document.documentElement.scrollTop + window.innerHeight >= top){
+          ele.setAttribute('src', ele.getAttribute('relsrc'));
+          EventUtil.removeHandler(window, 'scroll', arguments.callee);
+        }
+
+      });
+      getOffsetTop(ele);
+    };
+  </script>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <div>
+    <div style="width:200px;height:250px;background:#ccc; margin-top:50px;position:relative;"><img relsrc="./p1.jpg" id="wait_load" style="position:absolute;top:0;left:0"/></div>
+  </div>
+</body>
+</html>

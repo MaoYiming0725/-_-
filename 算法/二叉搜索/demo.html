@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>二叉搜索</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function Insert(root, obj){
+      if(root == null){root = obj;return root;}
+      else{
+        if(root.value > obj.value){
+            root.left = Insert(root.left, obj);
+            return root;
+        }
+        else if(root.value < obj.value){
+          root.right = Insert(root.right, obj);
+          return root;
+        }else return;
+      }
+    };
+
+    function Remove(root, value){
+      console.log(root.value);
+      if(value < root.value)root.left = Remove(root.left, value);
+      else if(value > root.value)root.right = Remove(root.right, value);
+      else{
+        //console.log(root);
+        if(root.left == null){
+          root = root.right;
+        }
+        else if(root.right == null)root = root.left;
+        else{
+          var tem = InOrder(root.right, []);
+          root.right = Remove(root.right, tem[0].value);
+          root.value = tem[0].value;
+        }
+      }
+      return root;
+
+    }
+
+    function InOrder(root, result){
+      if(root != null){
+        result = InOrder(root.left, result);
+        result.push(root);
+        result = InOrder(root.right, result);
+      }
+      return result;
+    }
+    var arr = [53, 17,78,9,45,65,94,23,81,88];
+    var arr2 =[];
+    arr.forEach(function(value){
+      var obj = {
+        value:value,
+        left:null,
+        right:null,
+      }
+      arr2.push(obj);
+    });
+
+    var root = null;
+    for(var i = 0; i < arr.length; i++){
+      root = Insert(root, arr2[i]);
+    }
+    //console.log(root);
+
+    //Remove(root, 45);
+    //Remove(root, 78);
+    Remove(root, 78);
+    console.log(root);
+    //var inOrder = InOrder(root, []);
+    //console.log(inOrder);
+
+
+  </script>
+
+</body>
+</html>
