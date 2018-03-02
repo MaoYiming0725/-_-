@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  //leetcode 207. Course Schedule
+  var canFinish = function(numCourses, prerequisites) {
+    var bfs = function(i){
+        visited[i] = -1;
+        for(var j=0; j<adjMatrix[i].length; j++){
+            if(visited[adjMatrix[i][j]] == 0){
+                if(! bfs(adjMatrix[i][j])){
+                  //console.log(visited);
+                  return false;
+                }
+                else queue.push(j);
+                //console.log(queue);
+            }else if(visited[adjMatrix[i][j]] == -1){
+              console.log(visited);
+              return false;
+            }
+
+        }
+        visited[i] = 1;
+        return true;
+    }
+    var adjMatrix = [];
+    var visited = [];
+    var queue = [];
+    for(var i = 0; i<numCourses; i++){
+        adjMatrix.push([]);
+        visited.push(0);
+    }
+    for(var i = 0; i<prerequisites.length; i++){
+      //console.log(prerequisites[i]);
+      adjMatrix[prerequisites[i][0]].push(prerequisites[i][1]);
+    }
+    for(var i = 0; i<numCourses; i++){
+        if(visited[i] == 0){
+            queue.push(i);
+            console.log(queue);
+            while(queue.length>0){
+                if(!bfs(i))return false;
+                queue = queue.slice(1);
+            }
+
+
+        }
+    }
+    return true;
+  };
+
+  console.log(canFinish(4, [[2,0],[1,0],[3,1],[3,2],[1,3]]));
+  </script>
+
+</body>
+</html>

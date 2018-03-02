@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  var adjMatrix = [[1,2],[3],[3],[4],[2]];
+  var dfs = function(adjMatrix){
+
+    var visited = new Array(adjMatrix.length);
+    var result = [];
+    var search = function(index){
+      visited[index] = 1;
+      result.push(index);
+      for(var i = 0; i<adjMatrix[index].length; i++){
+        if(!visited[adjMatrix[index][i]])search(adjMatrix[index][i]);
+      }
+    }
+
+    search(0);
+    return result;
+  }
+  console.log(dfs(adjMatrix));
+  </script>
+
+</body>
+</html>

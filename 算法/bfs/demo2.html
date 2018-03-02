@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  var adjMatrix = [[1,2],[3],[3],[4],[2]];
+  var bfs = function(adjMatrix){
+    var queue = [];
+    var visited = new Array(adjMatrix.length);
+    var result = [];
+    var search = function(index){
+      for(var i = 0; i<adjMatrix[index].length; i++){
+        if(!visited[adjMatrix[index][i]]){
+          visited[adjMatrix[index][i]] = 1;
+          queue.push(adjMatrix[index][i]);
+          result.push(adjMatrix[index][i]);
+        }
+      }
+      queue = queue.slice(1);
+    }
+
+
+    visited[0] = 1;
+    queue.push(0);
+    result.push(0);
+    while(queue.length > 0){
+      search(queue[0]);
+    }
+    return result;
+  }
+  console.log(bfs(adjMatrix));
+  </script>
+
+</body>
+</html>
