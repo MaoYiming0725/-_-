@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>inherit function</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    var genClassSelector = function(){
+      var ele = arguments[0]
+      var parent = ele.parentNode;
+      var selector = [];
+      while(parent != null){
+        if(ele.getAttribute('id')){
+          selector.splice(0,0, ('#' + ele.id))
+        }else if(ele.getAttribute('class')){
+          var className = ele.className.split(' ');
+          var classStr = className.join('.');
+          selector.splice(0,0, '.'+classStr);
+        }else{
+          selector.splice(0,0, ele.tagName.toLowerCase());
+        }
+        ele = parent;
+        parent = parent.parentNode;
+      }
+      return selector.join(' ');
+    }
+
+    document.addEventListener('click', function(e){
+      console.log(genClassSelector(e.target));
+    }, false)
+  </script>
+  <div>
+    <p>
+      <div id="id1">
+        <div class="class1 class2">
+          <ul>
+            <li>test</li>
+          </ul>
+        </div>
+      </div>
+    </p>
+  </div>
+</body>
+</html>
