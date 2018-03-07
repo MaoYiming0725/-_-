@@ -3,13 +3,15 @@ window.onload = function(){
   var target = document.getElementById("target");
   target.addEventListener('click', function(){
     var trial = new LeftMove(this, {
-      start: 200,
-      target:100,
-      mode: 'constant',
+      start: 300,
+      target:400,
+      mode: 'buffer',
+      speed: 12,
     });
     //console.log(trial);
     trial.animate();
   })
+  /*
   var target2 = document.getElementById("target2");
   target2.addEventListener('click', function(){
     var trial2 = new LeftMove(this, {
@@ -19,6 +21,7 @@ window.onload = function(){
     //console.log(trial);
     trial2.animate();
   })
+  */
 }
 
 function LeftMove(ele, set){
@@ -43,14 +46,17 @@ LeftMove.prototype.animate = function(){
     }
     tmp = parseInt(_this.element.style.left) + _this.step;
     if((_this.target > _this.start && tmp > _this.target) || (_this.target < _this.start && tmp < _this.target) || parseInt(_this.element.style.left) == _this.target){
-      _this.element.style.left = _this.target; + 'px';
-      flag = true;
+      _this.element.style.left = _this.target + 'px';
+      //flag = true;
+      clearInterval(_this.timer);
     }else{
       //console.log(tmp);
       _this.element.style.left = tmp + 'px';
     }
+    /*
     if(flag){
       clearInterval(_this.timer);
     }
+    */
   }, _this.t);
 }

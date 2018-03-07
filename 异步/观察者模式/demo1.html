@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>math_random</title>
+  <script type="text/javascript">
+  function Event(){
+    this.list = {};
+  }
+  Event.prototype.listen = function(key, func){
+    if(!this.list[key]){
+      this.list[key] = [];
+    }
+    this.list[key].push(func);
+  }
+  Event.prototype.fire = function(key){
+    if(!this.list[key])return false;
+    for(var i =0; i< this.list[key].length; i++)
+      this.list[key][i](key);
+  }
+
+  Event.prototype.remove = function(key, func){
+    if(!this.list[key])return false;
+    if(!func){
+      delete this.list[key];
+    }else{
+      for(var i =0; i< this.list[key].length; i++)
+        if(this.list[key][i] === func){
+          this.list[key].splice(i, 1);
+        }
+    }
+  }
+
+  var f1 = new Event();
+  var cb1 = function(key){
+    console.log(key+'1');
+  }
+  var cb2 = function(key){
+    console.log(key+'2');
+  }
+  var cb3 = function(key){
+    console.log(key+'3');
+  }
+  f1.listen('blog1', cb1);
+  f1.listen('blog1', cb3);
+  f1.listen('blog2', cb2);
+  f1.fire('blog1');
+  f1.remove('blog1', cb1);
+  f1.fire('blog1');
+
+
+  </script>
+
+</head>
+
+<body>
+  test
+</body>
+</html>
