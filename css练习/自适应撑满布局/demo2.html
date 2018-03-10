@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--margin和padding的百分比都是相对于父元素宽度而言的-->
+    <meta charset="utf-8">
+    <style type="text/css">
+      #main_block{
+        display: flex;
+        width: 30%;
+        height:200px;
+        border: 1px #ccc solid;
+      }
+      #block1{
+        width:50px;
+        height: 100%;
+        background: red;
+      }
+      #block2{
+        flex-grow:1;
+        background-color: blue;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main_block">
+      <div id="block1"></div>
+      <div id="block2">
+      </div>
+    <div>
+  </body>
+</html>
