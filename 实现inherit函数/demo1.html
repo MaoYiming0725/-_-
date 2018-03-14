@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>inherit function</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  //寄生组合式继承
+    function Person(name){
+      this.name = name;
+    }
+    Person.prototype.getName = function(){
+      return this.name;
+    }
+
+    function Chinese(name, nation){
+      Person.apply(this, [name]);
+      this.nation = nation;
+    }
+
+    function inheritPrototype(subClass, superClass){
+      var prototype = Object.create(superClass.prototype);
+      prototype.constructor = subClass;
+      subClass.prototype = prototype;
+
+    }
+
+    inheritPrototype(Chinese, Person);
+    Chinese.prototype.getNation = function(){
+      return this.nation;
+    }
+
+    var p = new Person('shijun');
+    var c = new Chinese("liyatang", "China");
+
+    console.log(p); // Person {name: "shijun", getName: function}
+    console.log(c); // Chinese {name: "liyatang", nation: "China", constructor: function, getNation: function, getName: function}
+
+
+    console.log(p.constructor); // function Person(name){}
+    console.log(c.constructor); // function Chinese(){}
+
+    console.log(c instanceof Chinese); // true
+    console.log(c instanceof Person); // true
+
+  </script>
+
+</body>
+</html>

@@ -19,10 +19,11 @@
 
     function _new(func){
       var obj = new Object();
+      this = obj;
       var args = Array.prototype.slice.apply(arguments, [1]);
-      func.apply(obj,args);
-      obj.__proto__ = func.prototype
-      return obj;
+      func.apply(this,args);
+      this.__proto__ = func.prototype
+      return this;
     }
     var value = 10;
     var obj1 = new TestObject(6);

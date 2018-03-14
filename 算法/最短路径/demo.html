@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+      function shortPath(node, moveArray, num){
+
+        if(num == 0) return;
+        var minEdge = maxEdge;
+        var minNode;
+        for(var i = 0; i < moveArray.length; i++){
+          if(i != node && moveArray[node][i] != undefined){
+            shortEdge[i] = shortEdge[i] != undefined && shortEdge[i] < shortEdge[node] + moveArray[node][i]  ? shortEdge[i] : shortEdge[node] + moveArray[node][i]
+          }
+
+          if(shortNode[i] == undefined && shortEdge[i] < minEdge){
+            minEdge = shortEdge[i];
+            minNode = i;
+          }
+        }
+        shortNode[minNode] = 1;
+        shortPath(minNode, moveArray, num-1);
+
+      }
+      var maxEdge = 999;
+      var moveArray = [[0, 10, , 30, 100], [, 0, 50, , , ], [, , 0, , 10],[, , 20, 0, 60], [, , , , 0]];
+      var shortNode = new Array(moveArray.length);
+      shortNode[0] = 1;
+      var shortEdge = new Array(moveArray.length);
+      shortEdge[0] = 0;
+      shortPath(0, moveArray, moveArray.length);
+      console.log(shortEdge);
+  </script>
+
+</body>
+</html>

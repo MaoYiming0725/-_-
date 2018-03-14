@@ -7,13 +7,15 @@
   <script type="text/javascript">
     function drag(event){
       event.dataTransfer.setData("targetID",event.target.id);
+      //localStorage.dragId = event.target.id;
     }
     function allowDrag(event){
       event.preventDefault();
     }
     function drop(event){
       event.preventDefault();
-      var data =  event.dataTransfer.getData("targetID");
+      //var data =  event.dataTransfer.getData("targetID");
+      var data = localStorage.dragId;
       event.target.appendChild(document.getElementById(data));
 
     }

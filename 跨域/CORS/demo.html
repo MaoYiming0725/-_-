@@ -31,6 +31,8 @@
       }
     };
     xhr.open('get', "http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=161028202106247", true);
+    //自定义了请求头部，因此需要先进行一次preflight request,此请求类型时OPTIONS
+    //xhr.setRequestHeader('X-PRODUCT', 'H5');
     xhr.send();
   </script>
   <div id="news"></div>

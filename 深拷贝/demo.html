@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>inherit function</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function Person(name){
+      this.name = name;
+    }
+    Person.prototype.getName = function(){
+      return this.name;
+    }
+
+    Object.prototype.clone = function(){
+      var newObj = new Object();
+      var prototype = Object.create(this.__proto__);
+      newObj.__proto__ = prototype;
+      var propNames = Object.getOwnPropertyNames(this);
+      var _this = this;
+      propNames.forEach(function(item){
+        newObj[item] = _this[item];
+      });
+      return newObj;
+    }
+    var person = new Person('mym');
+    console.log(person.clone());
+  </script>
+
+</body>
+</html>
