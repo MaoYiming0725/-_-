@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>堆排序</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  var treeNode = function(value){
+    this.value = value;
+    this.children = [];
+  }
+
+  treeNode.prototype.insertChild = function(value){
+    var _this = this;
+    value.forEach(function(item){
+      _this.children.push(item);
+    })
+    return value;
+  }
+
+  var root = new treeNode('A');
+  var childrenA = root.insertChild([new treeNode('B'),new treeNode('C')]);
+  var childrenB = childrenA[0].insertChild([new treeNode('D'),new treeNode('E')]);
+  var childrenD = childrenB[0].insertChild([new treeNode('F'),new treeNode('G')]);
+  var childrenE = childrenB[1].insertChild([new treeNode('H'),new treeNode('I'),new treeNode('J')]);
+
+  console.log(root);
+
+
+
+
+
+
+
+  </script>
+
+</body>
+</html>
