@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>math_random</title>
+  <script type="text/javascript">
+ for (var i = 0; i < 5; i++) {
+    setTimeout(function() {
+      console.log(i);
+      console.log(new Date());
+    }, 1000 * i);
+    }
+/*
+    for (var i = 0; i < 5; i++) {
+      (function(value) {
+        setTimeout(function() {
+          console.log(value);
+          console.log(new Date());
+        }, value * 1000);
+      })(i);
+    }
+
+
+    for (var i = 0; i < 5; i++) {
+    (function() {
+      setTimeout(function() {
+        console.log(i);
+      }, i * 1000);
+    })(i);
+    }
+
+*/
+//立即执行函数：立即执行，此函数中返回undefined
+    for (var i = 0; i < 5; i++) {
+      setTimeout((function(value) {
+        console.log(value);
+        console.log(new Date());
+      })(i), i * 1000);
+    }
+/*
+    setTimeout(function() {
+      console.log(1)
+    }, 0);
+    new Promise(function executor(resolve) {
+      console.log(2);
+      for( var i=0 ; i<10000 ; i++ ) {
+        i == 9999 && resolve();
+      }
+      console.log(3);
+    }).then(function() {
+      console.log(4);
+    });
+    console.log(5);
+*/
+  </script>
+
+</head>
+
+<body>
+  test
+</body>
+</html>

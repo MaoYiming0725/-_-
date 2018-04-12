@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>math_random</title>
+  <script type="text/javascript">
+    var f1 = function(){
+      var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+          var a  = 2;
+          resolve(a);
+        },5000);
+      });
+      return p;
+    }
+    f1().then(data => console.log(data));
+
+  </script>
+
+</head>
+
+<body>
+  test
+</body>
+</html>

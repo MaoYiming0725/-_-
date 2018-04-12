@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <script type = "text/javascript">
+  function compare(){
+    return function(a,b){
+        var value1 = a.name;
+        var value2 = b.name;
+
+        return value1 > value2 ? 1 : -1;
+    }
+  }
+  var nodes = [];
+
+
+  var input = ['4', 'math 100 90', 'algorithm 10 8', 'string 50 1'];
+
+  var n = parseInt(input[0].split(" ")[0]);
+  console.log(n);
+  var arr = input.slice(1,n+1);
+  var arr1 = [];
+  arr.forEach(function(item){
+    arr1.push(item.split(" "));
+  });
+  arr1.forEach(function(item){
+    var obj = {};
+    obj.name = item[0];
+    if(item[2]/item[1] <= 0.3){
+          obj.score = 5;
+      }
+      else if(item[2]/item[1] <0.6){
+          obj.score = 4;
+
+      }
+      else{
+        obj.score = 3;
+      }
+    
+
+  });
+
+  var diff = [];
+  var medium = [];
+  var easy = [];
+  nodes.forEach(function(item){
+  if(item.acc <= 0.3){
+        item.score = 5;
+        diff.push(item);
+    }
+    else if(item.acc <0.6){
+        item.score = 4;
+        medium.push(item);
+
+    }
+    else{
+      item.score = 3;
+        easy.push(item);
+    }
+  });
+
+  var result =nodes;
+  if(easy.length>0)result = result.concat(easy);
+  if(medium.length>0)result = result.concat(medium);
+  if(diff.length>0)result = result.concat(diff);
+
+  console.log('math' > 'ax');
+  result = result.sort(function(a,b){
+      var value1 = a.name;
+      var value2 = b.name;
+      return value1 > value2 ? 1 : -1;
+  });
+  console.log(result);
+  for(var i=0; i<result.length; i++){
+    console.log(result[i][name], result[i][score]);
+  }
+  </script>
+</body>
+</html>

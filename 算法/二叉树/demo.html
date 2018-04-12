@@ -45,15 +45,65 @@
           stack.splice(0, 1);
           index = index * 2 + 2;
         }
-        console.log(stack);
-        console.log(index);
+        //console.log(stack);
+        //console.log(index);
       }
       return result;
     }
 
+    function postOrder(rootIndex){
+      var result = [];
+      var s1 = [];
+      var s2 = [];
+      var index;
+      s1.push(rootIndex);
+      while(s1.length > 0){
+        index = s1.pop();
+        //console.log(tree[index]);
+        s2.push(index);
+        if(tree[index * 2 + 1] != undefined)s1.push(index * 2 + 1);
+        if(tree[index * 2 + 2] != undefined)s1.push(index * 2 + 2);
+      }
+
+      while(s2.length > 0){
+        result.push(tree[s2.pop()]);
+      }
+      return result;
+    }
+
+    function findPath(rootIndex, value){
+      var stack = [];
+      var result = [];
+      var visited = new Array(tree.length);
+      var index = rootIndex;
+      while(stack.length > 0 || tree[index] != undefined){
+        //console.log(result);
+        if(tree[index] != undefined){
+          result.push(tree[index]);
+          if(tree[index] == value)
+            return result;
+
+          stack.unshift(index);
+          visited[index] = 1;
+          index = index * 2 + 1;
+        }else{
+          index = stack[0];
+          if(tree[index * 2 + 2] == undefined || visited[index * 2 + 2] == 1){
+            stack.shift();
+            result.pop();
+          }
+          index = index * 2 + 2;
+        }
+        //console.log(stack);
+        //console.log(index);
+      }
+      return;
+    }
+
+
     var tree = [1, 2, 3, 4, 5, , 6, , , 7];
     //console.log(InOrder(0));
-    console.log(preOrder(0));
+    console.log(findPath(0, 8));
 
   </script>
 
